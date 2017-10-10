@@ -23,10 +23,6 @@
 		"flash",
 		"jpegcam"
 	],
-	"dependencies": {
-
-	},
-	"devDependencies": {
-		
-	}
+	"dependencies": {},
+	"devDependencies": {}
 }
