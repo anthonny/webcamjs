@@ -104,14 +104,21 @@ var Webcam = {
 		}
 		// check the video devices connected
         try {
-            MediaStreamTrack.getSources(function (info){
-                for(var i =0;i!=info.length;i++){
-                    var inf = info[i];
-                    if (inf.kind === 'video') {
-                        Webcam.cameraIDs.push(inf.id);
-                    }
-                }
-            });
+
+					navigator.mediaDevices.enumerateDevices()
+					.then(function(devices) {
+					  devices.forEach(function(device) {
+					    console.log(device.kind + ": " + device.label +
+					                " id = " + device.deviceId);
+							if (device.kind === 'video') {
+									Webcam.cameraIDs.push(inf.id);
+							}
+					  });
+					})
+					.catch(function(err) {
+					  console.log(err.name + ": " + err.message);
+					});
+
         } catch (e) {
             // possible problems with MediaStreamTrack
         }
